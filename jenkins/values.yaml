@@ -7,23 +7,26 @@ Master:
     - git:3.9.3
     - google-oauth-plugin:0.7
     - google-source-plugin:0.3
-  Cpu: "900m"
-  Memory: "2500Mi"
-  JavaOpts: "-Xms2500m -Xmx2500m"
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "512Mi"
+    limits:
+      cpu: "900m"
+      memory: "1024Mi"
+  JavaOpts: "-Xms1024m -Xmx1024m"
   ServiceType: ClusterIP
 Agent:
   Enabled: true
   resources:
     requests:
-      cpu: "450m"
+      cpu: "50m"
       memory: "256Mi"
     limits:
       cpu: "900m"
       memory: "512Mi"
-Persistence:
-  Size: 100Gi
 NetworkPolicy:
   ApiVersion: networking.k8s.io/v1
 rbac:
   install: true
-  serviceAccountName: jenkins-selenium-grid
+  serviceAccountName: default

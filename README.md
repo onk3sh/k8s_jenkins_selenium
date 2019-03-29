@@ -13,6 +13,11 @@ Credentialed accounts:
  [core]
 project = <PROJECT_ID>
 ```
+Also, execute the command to check the current state of the gcloud configurations. Project ID is the name of the project displayed from the above command.
+```
+gcloud compute project-info describe --project [PROJECT_ID]
+```
+
 We need to first set the compute zone and then clone the code into the Cloud Shell:
 ```
 gcloud config set compute/zone asia-south1
@@ -25,7 +30,7 @@ Use the below command to create the cluster inside the Google Cloud Platform
 ```
 gcloud container clusters create jenkins-selenium-grid \
 --num-nodes 2 \
---machine-type n1-standard-2 \
+--machine-type n1-standard-1 \
 --scopes "https://www.googleapis.com/auth/projecthosting,cloud-platform"
 ```
 Note: This task is time consuming and will take upto 5 minutes to complete.

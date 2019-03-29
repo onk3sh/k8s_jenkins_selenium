@@ -9,7 +9,7 @@ Master:
     - google-source-plugin:0.3
   Cpu: "1"
   Memory: "2500Mi"
-  JavaOpts: "-Xms3500m -Xmx3500m"
+  JavaOpts: "-Xms2500m -Xmx2500m"
   ServiceType: ClusterIP
 Agent:
   Enabled: true

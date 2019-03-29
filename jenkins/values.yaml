@@ -8,17 +8,17 @@ Master:
     - google-oauth-plugin:0.7
     - google-source-plugin:0.3
   Cpu: "1"
-  Memory: "3500Mi"
+  Memory: "2500Mi"
   JavaOpts: "-Xms3500m -Xmx3500m"
   ServiceType: ClusterIP
 Agent:
   Enabled: true
   resources:
     requests:
-      cpu: "500m"
+      cpu: "450m"
       memory: "256Mi"
     limits:
-      cpu: "1"
+      cpu: "900m"
       memory: "512Mi"
 Persistence:
   Size: 100Gi

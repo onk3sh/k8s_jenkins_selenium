@@ -69,10 +69,16 @@ Verify installation by checking the version of helm
 ```
 ./helm version
 ```
+### Step 1.1
+Clone git repo to cloud shell
+```
+git clone https://github.com/onk3sh/k8s_jenkins_selenium
+```
+
 ## Step 2 : Configure and Install Jenkins
 Use Helm cli to deploy jenkins.
 ```
-./helm install -n cd stable/jenkins -f jenkins/values.yaml --version 0.16.6 --wait
+./helm install -n cd stable/jenkins -f k8s_jenkins_selenium/jenkins/values.yaml --version 0.16.6 --wait
 ```
 
 Verify that the pod is created in the cluster for jenkins

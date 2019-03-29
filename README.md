@@ -1,6 +1,18 @@
 # Jenkins and Selenium Grid setup on Google Container Registry in GCP via Kubernetes
 
 ## Prerequisites
+Check GCP state by executing the following commands and checking outputs:
+```
+gcloud auth list
+gcloud config list project
+```
+Expected outputs have to be :
+```
+Credentialed accounts:
+ - <myaccount>@<mydomain>.com (active)
+ [core]
+project = <PROJECT_ID>
+```
 We need to first set the compute zone and then clone the code into the Cloud Shell:
 ```
 gcloud config set compute/zone us-central1-f

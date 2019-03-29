@@ -134,7 +134,7 @@ kubectl get services
 ## Step 4: Spin up Child Chrome Nodes inside the cluster
 Now since hub is up and exposed lets spin up nodes and register into hub.
 ```
-kubectl create -f deployment/selenium-node-chrome-deployment.yaml
+kubectl create -f k8s_jenkins_selenium/deployment/selenium-node-chrome-deployment.yaml
 ```
 By default 2 pods have been configured inside the deployment file to be launched once the above step is executed.
 ```

@@ -1,6 +1,6 @@
 # Jenkins and Selenium Grid setup on Google Container Registry in GCP via Kubernetes
 
-## Prerequisites
+## Pre-requisites
 Check GCP state by executing the following commands and checking outputs:
 ```
 gcloud auth list
@@ -15,8 +15,10 @@ project = <PROJECT_ID>
 ```
 We need to first set the compute zone and then clone the code into the Cloud Shell:
 ```
-gcloud config set compute/zone us-central1-f
+gcloud config set compute/zone asia-south1
 ```
+Here the zone has been set to India.
+The complete list of all compute zones is available here: https://cloud.google.com/compute/docs/regions-zones/
 
 ## Step 0 : Provisioning Jenkins via Helm
 The following steps will install and configure jenkins on the cluster.

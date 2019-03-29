@@ -7,7 +7,7 @@ Master:
     - git:3.9.3
     - google-oauth-plugin:0.7
     - google-source-plugin:0.3
-  Cpu: "1"
+  Cpu: "900m"
   Memory: "2500Mi"
   JavaOpts: "-Xms2500m -Xmx2500m"
   ServiceType: ClusterIP

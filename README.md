@@ -105,23 +105,15 @@ printf $(kubectl get secret cd-jenkins -o jsonpath="{.data.jenkins-admin-passwor
 
 Next, To connect to Jenkins UI, click on the web Preview button in the cloud shell and then click on Preview on port 8080.
 
-
-## Step 3: Get the deployment files into the GCP ecosystem
-Clone the code using the gcp console and open the k8_selenium_grid folder
-```
-git clone https://github.com/onk3sh/k8s_selenium_grid
-cd k8s_selenium_grid
-```
-
-## Step 4: Create the deployments and the service for the selenium grid 
+## Step 3: Create the deployments and the service for the selenium grid 
 Creating the pod for the grid hub using the deployment file copied in the previous step.
 ```
-$ kubectl create -f deployment/selenium-hub-deployment.yaml
+kubectl create -f k8s_jenkins_selenium/deployment/selenium-hub-deployment.yaml
 ```
 
 Lets create a service for nodes to connect to and launching selenium hub as a service
 ```
-$ kubectl create -f service/selenium-hub-svc.yaml
+kubectl create -f k8s_jenkins_selenium/service/selenium-hub-svc.yaml
 ```
 
 Expose the service across the internet using an external IP:
@@ -139,10 +131,10 @@ We can also get the external IP by getting the services
 kubectl get services
 ```
 
-## Step 5: Spin up Child Chrome Nodes inside the cluster
+## Step 4: Spin up Child Chrome Nodes inside the cluster
 Now since hub is up and exposed lets spin up nodes and register into hub.
 ```
-$ kubectl create -f deployment/selenium-node-chrome-deployment.yaml
+kubectl create -f deployment/selenium-node-chrome-deployment.yaml
 ```
 By default 2 pods have been configured inside the deployment file to be launched once the above step is executed.
 ```
@@ -152,7 +144,7 @@ We can use the above step to scale the grid.
 
 Now nodes are up and registered to hub created above can be seen in exposed selenium-hub’s console. 
 
-### End Step: Running tests on the grid
+### Step 5: Running tests on the grid
 Now consume the grid in any selenium test using the external IP or inside a Jenkins job using the internal IP
 Example: External IP consumption
 ```

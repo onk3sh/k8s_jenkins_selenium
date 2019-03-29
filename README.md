@@ -20,7 +20,17 @@ gcloud config set compute/zone asia-south1
 Here the zone has been set to India.
 The complete list of all compute zones is available here: https://cloud.google.com/compute/docs/regions-zones/
 
-## Step 0 : Provisioning Jenkins via Helm
+## Step 0 : Create the K8s cluster for the grid
+Use the below command to create the cluster inside the Google Cloud Platform
+```
+gcloud container clusters create jenkins-selenium-grid \
+--num-nodes 2 \
+--machine-type n1-standard-2 \
+--scopes "https://www.googleapis.com/auth/projecthosting,cloud-platform"
+```
+Note: This task is time consuming and will take upto 5 minutes to complete.
+
+## Step 1 : Provisioning Jenkins via Helm
 The following steps will install and configure jenkins on the cluster.
 
 Download and install the helm binary
@@ -54,7 +64,7 @@ Verify installation by checking the version of helm
 ```
 ./helm version
 ```
-## Step 1 : Configure and Install Jenkins
+## Step 2 : Configure and Install Jenkins
 Use Helm cli to deploy jenkins.
 ```
 ./helm install -n cd stable/jenkins -f jenkins/values.yaml --version 0.16.6 --wait
@@ -76,7 +86,7 @@ Check that the Jenkins Service was created properly.
 kubectl get svc
 ```
 
-### Step 1.1 Connect to Jenkins UI
+### Step 2.1 Connect to Jenkins UI
 Jenkins will automatically create an admin password. Execute the following command to retrive the same.
 ```
 printf $(kubectl get secret cd-jenkins -o jsonpath="{.data.jenkins-admin-password}" | base64 --decode);echo
@@ -84,15 +94,6 @@ printf $(kubectl get secret cd-jenkins -o jsonpath="{.data.jenkins-admin-passwor
 
 Next, To connect to Jenkins UI, click on the web Preview button in the cloud shell and then click on Preview on port 8080.
 
-## Step 2 : Create the K8s cluster for the grid
-Use the below command to create the cluster inside the Google Cloud Platform
-```
-gcloud container clusters create jenkins-selenium-grid \
---num-nodes 2 \
---machine-type n1-standard-2 \
---scopes "https://www.googleapis.com/auth/projecthosting,cloud-platform"
-```
-Note: This task is time consuming and will take upto 5 minutes to complete.
 
 ## Step 3: Get the deployment files into the GCP ecosystem
 Clone the code using the gcp console and open the k8_selenium_grid folder
